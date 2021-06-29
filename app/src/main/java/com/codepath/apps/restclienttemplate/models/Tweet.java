@@ -24,12 +24,14 @@ public class Tweet {
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
         tweet.body = jsonObject.getString("text");
+        //convert the "created at" date into relative timestamp
         tweet.createdAt = getRelativeTimestamp(jsonObject.getString("created_at"));
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
-        //tweet.relativeTimestamp = getRelativeTimestamp(tweet.createdAt);
         return tweet;
     }
 
+    //method to convert raw date from API to relative timestamp
+    //source: https://gist.github.com/nesquena/f786232f5ef72f6e10a7
     public static String getRelativeTimestamp(String createdAt) {
         String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
         SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
