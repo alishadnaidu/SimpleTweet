@@ -52,7 +52,7 @@ public class TimelineActivity extends AppCompatActivity {
 
         // find the recycler view
         rvTweets = findViewById(R.id.rvTweets);
-        //initalize the list of tweets and adapter
+        //initialize the list of tweets and adapter
         tweets = new ArrayList<>();
         adapter = new TweetsAdapter(this, tweets);
         // configure the recycler view: layout manager and the adapter
@@ -77,8 +77,7 @@ public class TimelineActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 //code to refresh the list here
-                //fetchTimelineAsync(0);
-                populateHomeTimeline();
+                fetchTimelineAsync(0);
             }
         });
         // configure the refreshing colors
@@ -88,26 +87,32 @@ public class TimelineActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
     }
 
-    /*
+    // for when timeline page is refreshed
     public void fetchTimelineAsync(int page) {
         // Send the network request to fetch the updated data
         // `client` here is an instance of Android Async HTTP
         // getHomeTimeline is an example endpoint.
         client.getHomeTimeline(new JsonHttpResponseHandler() {
-            public void onSuccess(JSONArray json) {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
                 // Remember to CLEAR OUT old items before appending in the new ones
                 adapter.clear();
-                // ...the data has come back, add new items to your adapter...
-                adapter.addAll(...);
+                JSONArray jsonArray = json.jsonArray;
+                try {
+                    adapter.addAll(Tweet.fromJSONArray(jsonArray));
+                } catch (JSONException e) {
+                    Log.e(TAG, "Json exception in fetchTimelineAsync", e);
+                }
                 // Now we call setRefreshing(false) to signal refresh has finished
                 swipeContainer.setRefreshing(false);
             }
 
-            public void onFailure(Throwable e) {
-                Log.d("DEBUG", "Fetch timeline error: " + e.toString());
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.d("DEBUG", "Fetch timeline error: " + response);
             }
         });
-    } */
+    }
 
     //code for ActionBar
     @Override
