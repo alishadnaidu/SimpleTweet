@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,7 +76,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvScreenName;
         TextView relativeTimestamp;
         TextView tvUsersName;
-        //ImageView embeddedImage;
+        ImageView embeddedImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,7 +85,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             relativeTimestamp = itemView.findViewById(R.id.relativeTimestamp);
             tvUsersName = itemView.findViewById(R.id.tvUsersName);
-            //embeddedImage = itemView.findViewById(R.id.embeddedImage);
+            embeddedImage = itemView.findViewById(R.id.embeddedImage);
         }
 
         public void bind(Tweet tweet) {
@@ -93,7 +94,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
             relativeTimestamp.setText(tweet.createdAt);
             tvUsersName.setText(tweet.user.name);
-            //Glide.with(context).load(tweet.tweetImage).into(embeddedImage);
+            Glide.with(context).load(tweet.tweetImage).into(embeddedImage);
         }
     }
 }

@@ -25,6 +25,7 @@
         app:counterMaxLength="140"
         app:counterTextAppearance="@style/counterText"
         app:counterOverflowTextAppearance="@style/counterOverride">
+
         <EditText
             android:id="@+id/etCompose"
             android:layout_width="match_parent"
@@ -35,7 +36,7 @@
             android:layout_marginTop="5dp"
             android:ems="10"
             android:gravity="start|top"
-            android:hint="how's it hanging?"
+            android:hint="how's it going?"
             android:inputType="textMultiLine"
             android:minLines="5" />
     </com.google.android.material.textfield.TextInputLayout>

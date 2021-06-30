@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:layout_marginBottom="35dp">
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -24,18 +25,20 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/tvUsersName"
         android:textStyle="normal"
+        android:layout_toRightOf="@+id/tvUsersName"
         tools:text="naidu_alisha" />
 
     <ImageView
         android:id="@+id/embeddedImage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvBody"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -55,7 +58,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        tools:text="Hello my loves! This is my tweet!" />
+        tools:text="Hello! This is my tweet!" />
 
     <TextView
         android:id="@+id/tvUsersName"

@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate.models;
 
 import android.text.format.DateUtils;
+import android.util.Log;
 
 import com.codepath.apps.restclienttemplate.TimelineActivity;
 
@@ -22,7 +23,7 @@ public class Tweet {
     public String createdAt;
     public User user;
     public String relativeTimestamp;
-    //public String tweetImage;
+    public String tweetImage;
 
     //empty constructor needed by Parceler Library
     public Tweet() {}
@@ -34,6 +35,14 @@ public class Tweet {
         tweet.createdAt = getRelativeTimestamp(jsonObject.getString("created_at"));
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         //tweet.tweetImage = jsonObject.getString("media_url_https");
+
+        JSONObject entities = jsonObject.getJSONObject("entities");
+        if (entities.has("media")) {
+            tweet.tweetImage = entities.getJSONArray("media").getJSONObject(0).getString("media_url_https");
+        }
+        else {
+            tweet.tweetImage = "";
+        }
         return tweet;
     }
 
