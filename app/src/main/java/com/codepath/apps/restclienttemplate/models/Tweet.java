@@ -34,9 +34,11 @@ public class Tweet {
         //convert the "created at" date into relative timestamp
         tweet.createdAt = getRelativeTimestamp(jsonObject.getString("created_at"));
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
-        //tweet.tweetImage = jsonObject.getString("media_url_https");
 
+        // must go into the entities JSONObject to get to media
         JSONObject entities = jsonObject.getJSONObject("entities");
+        // only set tweet.tweetImage to the url of the image in the tweet if the tweet contains an image
+        // if tweet does not have media (aka image), just set the tweetImage to an empty string
         if (entities.has("media")) {
             tweet.tweetImage = entities.getJSONArray("media").getJSONObject(0).getString("media_url_https");
         }

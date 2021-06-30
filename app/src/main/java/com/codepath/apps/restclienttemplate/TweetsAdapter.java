@@ -88,6 +88,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             embeddedImage = itemView.findViewById(R.id.embeddedImage);
         }
 
+        //set the views to contain the data parsed from json/twitter api
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText("@" + tweet.user.screenName);
