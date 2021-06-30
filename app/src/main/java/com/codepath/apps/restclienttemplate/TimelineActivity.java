@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,15 +61,22 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets.setAdapter(adapter);
         populateHomeTimeline();
 
+        /*
         //logout button functionality (navigate backwards to the login activity, app forgets who is logged in)
         logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                client.clearAccessToken();
-                finish();
+                TwitterApp.getRestClient(TimelineActivity.this).clearAccessToken();
+                //client.clearAccessToken();
+                Intent i = new Intent(TimelineActivity.this, LoginActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // this makes sure the Back button won't work
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // same as above
+                startActivity(i);
+                //finish();
             }
         });
+         */
         // look up the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
@@ -85,6 +93,12 @@ public class TimelineActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+        ActionBar actionBar = getSupportActionBar();
+        //actionBar.setIcon(R.drawable.ic_launcher_twitter_round);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.ic_launcher_twitter_round);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 
     // for when timeline page is refreshed
@@ -123,6 +137,7 @@ public class TimelineActivity extends AppCompatActivity {
         return true;
     }
 
+    // comes into play when an item in the actionbar is clicked
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // if the compose icon is tapped, navigate to the compose activity
@@ -130,6 +145,17 @@ public class TimelineActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ComposeActivity.class);
             //use startActivityForResult to pass back the tweet to the timeline from compose activity
             startActivityForResult(intent, REQUEST_CODE);
+            return true;
+        }
+
+        // if the logout icon is tapped, forget who's logged in and navigate to the login screen
+        if (item.getItemId() == R.id.logout) {
+            TwitterApp.getRestClient(TimelineActivity.this).clearAccessToken();
+            Intent i = new Intent(TimelineActivity.this, LoginActivity.class);
+            // makes sure the back button won't work
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
             return true;
         }
         return super.onOptionsItemSelected(item);

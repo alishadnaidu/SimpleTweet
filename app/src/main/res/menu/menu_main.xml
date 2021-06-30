@@ -4,7 +4,13 @@
 
     <item
         android:id="@+id/compose"
-        android:icon="@drawable/twittercompose"
+        android:icon="@drawable/ic_vector_compose"
         android:title="Compose"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_vector_person_stroke"
+        android:title="Logout"
         app:showAsAction="always" />
 </menu>
