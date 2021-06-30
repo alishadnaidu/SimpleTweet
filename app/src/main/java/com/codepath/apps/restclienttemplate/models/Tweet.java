@@ -22,6 +22,7 @@ public class Tweet {
     public String createdAt;
     public User user;
     public String relativeTimestamp;
+    //public String tweetImage;
 
     //empty constructor needed by Parceler Library
     public Tweet() {}
@@ -32,6 +33,7 @@ public class Tweet {
         //convert the "created at" date into relative timestamp
         tweet.createdAt = getRelativeTimestamp(jsonObject.getString("created_at"));
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        //tweet.tweetImage = jsonObject.getString("media_url_https");
         return tweet;
     }
 
