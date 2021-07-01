@@ -55,7 +55,7 @@ public class ComposeActivity extends AppCompatActivity {
                     return;
                 }
                 // following code occurs when the tweet is within the char limit
-                Toast.makeText(ComposeActivity.this, "Looks good!" + tweetContent, Toast.LENGTH_LONG).show();
+                Toast.makeText(ComposeActivity.this, "Looks good!", Toast.LENGTH_LONG).show();
                 // make an API call to Twitter to publish the tweet
                 client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
                     @Override
@@ -64,6 +64,7 @@ public class ComposeActivity extends AppCompatActivity {
                         try {
                             Tweet tweet = Tweet.fromJson(json.jsonObject);
                             Log.i(TAG, "Published tweets says " + tweet.body);
+                            // using an intent to pass the tweet back to the timeline
                             Intent intent = new Intent();
                             intent.putExtra("tweet", Parcels.wrap(tweet));
                             // set result as succeeded (RESULT_OK), bundle data for response

@@ -78,7 +78,7 @@ public class Tweet {
         return tweets;
     }
 
-    //getter methods
+    // getter methods, used in tweets details activity
 
     public String getBody() {
         return body;
@@ -91,8 +91,6 @@ public class Tweet {
     public String getTweetImage() {
         return tweetImage;
     }
-
-    public String getRelativeTimestamp() { return relativeTimestamp; }
 
     public User getUser() { return user; }
 
