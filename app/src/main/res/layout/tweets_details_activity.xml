@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivProfileImageDetails"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvScreenNameDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/ivProfileImageDetails"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/ivProfileImageDetails"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Taylor Swift" />
+
+    <TextView
+        android:id="@+id/tvUsernameDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/tvScreenNameDetails"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="4dp"
+        tools:text="taylorswift13" />
+
+    <TextView
+        android:id="@+id/tvTweetContentDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvScreenNameDetails"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="-1dp"
+        android:layout_toEndOf="@+id/ivProfileImageDetails"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="31dp"
+        android:autoLink="all"
+        android:linksClickable="true"
+        tools:text="taylor's tweet goes here" />
+
+    <ImageView
+        android:id="@+id/tweetImageDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTweetContentDetails"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="116dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/relativeTimestampDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        tools:text="2 seconds ago" />
+</RelativeLayout>

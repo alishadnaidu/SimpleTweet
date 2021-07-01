@@ -42,7 +42,6 @@ public class TimelineActivity extends AppCompatActivity {
     RecyclerView rvTweets;
     List<Tweet> tweets;
     TweetsAdapter adapter;
-    Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,22 +60,6 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets.setAdapter(adapter);
         populateHomeTimeline();
 
-        /*
-        //logout button functionality (navigate backwards to the login activity, app forgets who is logged in)
-        logoutButton = findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TwitterApp.getRestClient(TimelineActivity.this).clearAccessToken();
-                //client.clearAccessToken();
-                Intent i = new Intent(TimelineActivity.this, LoginActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // this makes sure the Back button won't work
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // same as above
-                startActivity(i);
-                //finish();
-            }
-        });
-         */
         // look up the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 

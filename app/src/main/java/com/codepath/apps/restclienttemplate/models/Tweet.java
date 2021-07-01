@@ -32,6 +32,7 @@ public class Tweet {
         Tweet tweet = new Tweet();
         tweet.body = jsonObject.getString("text");
         //convert the "created at" date into relative timestamp
+        //tweet.createdAt is now the relative timestamp (ex. "3 seconds ago")
         tweet.createdAt = getRelativeTimestamp(jsonObject.getString("created_at"));
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
 
@@ -73,5 +74,25 @@ public class Tweet {
 
         }
         return tweets;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getTweetImage() {
+        return tweetImage;
+    }
+
+    public String getRelativeTimestamp() {
+        return relativeTimestamp;
+    }
+
+    public User getUser() {
+        return user;
     }
 }
