@@ -30,7 +30,7 @@ public class Tweet {
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
-        tweet.body = jsonObject.getString("text");
+        tweet.body = jsonObject.getString("full_text");
         //convert the "created at" date into relative timestamp
         //tweet.createdAt is now the relative timestamp (ex. "3 seconds ago")
         tweet.createdAt = getRelativeTimestamp(jsonObject.getString("created_at"));
@@ -76,6 +76,8 @@ public class Tweet {
         return tweets;
     }
 
+    //getter methods
+
     public String getBody() {
         return body;
     }
@@ -88,11 +90,8 @@ public class Tweet {
         return tweetImage;
     }
 
-    public String getRelativeTimestamp() {
-        return relativeTimestamp;
-    }
+    public String getRelativeTimestamp() { return relativeTimestamp; }
 
-    public User getUser() {
-        return user;
-    }
+    public User getUser() { return user; }
+
 }
