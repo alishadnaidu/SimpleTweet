@@ -24,6 +24,7 @@ public class Tweet {
     public User user;
     public String relativeTimestamp;
     public String tweetImage;
+    public int numberOfLikes;
 
     //empty constructor needed by Parceler Library
     public Tweet() {}
@@ -35,6 +36,7 @@ public class Tweet {
         //tweet.createdAt is now the relative timestamp (ex. "3 seconds ago")
         tweet.createdAt = getRelativeTimestamp(jsonObject.getString("created_at"));
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.numberOfLikes = jsonObject.getInt("favorite_count");
 
         // must go into the entities JSONObject to get to media
         JSONObject entities = jsonObject.getJSONObject("entities");
@@ -94,4 +96,5 @@ public class Tweet {
 
     public User getUser() { return user; }
 
+    public int getNumberOfLikes() { return numberOfLikes; }
 }

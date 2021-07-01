@@ -47,7 +47,7 @@ public class ComposeActivity extends AppCompatActivity {
                 // error correcting if tweet is too long or empty
                 String tweetContent = etCompose.getText().toString();
                 if (tweetContent.isEmpty()) {
-                    Toast.makeText(ComposeActivity.this, "You gotta write something", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ComposeActivity.this, "Looks like your tweet is empty!", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (tweetContent.length() > MAX_TWEET_LENGTH) {
@@ -55,7 +55,7 @@ public class ComposeActivity extends AppCompatActivity {
                     return;
                 }
                 // following code occurs when the tweet is within the char limit
-                Toast.makeText(ComposeActivity.this, "Looking gooood: " + tweetContent, Toast.LENGTH_LONG).show();
+                Toast.makeText(ComposeActivity.this, "Looks good!" + tweetContent, Toast.LENGTH_LONG).show();
                 // make an API call to Twitter to publish the tweet
                 client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
                     @Override

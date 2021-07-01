@@ -77,4 +77,25 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         tools:text="2 seconds ago" />
+
+    <Button
+        android:id="@+id/likeButton"
+        android:layout_width="37dp"
+        android:layout_height="39dp"
+        android:layout_below="@+id/tweetImageDetails"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/heartoutlinered" />
+
+    <TextView
+        android:id="@+id/tvLikeCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tweetImageDetails"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/likeButton"
+        android:textSize="16sp"
+        tools:text="37" />
+
 </RelativeLayout>

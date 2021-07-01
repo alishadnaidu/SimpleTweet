@@ -3,6 +3,8 @@ package com.codepath.apps.restclienttemplate;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -24,6 +26,11 @@ public class TweetsDetailsActivity extends AppCompatActivity {
     ImageView ivProfileImageDetails;
     ImageView tweetImageDetails;
     TextView relativeTimestampDetails;
+    Button likeButton;
+    TextView tvLikeCount;
+    public Integer likes;
+
+    boolean isPlay = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,8 @@ public class TweetsDetailsActivity extends AppCompatActivity {
         ivProfileImageDetails = (ImageView) findViewById(R.id.ivProfileImageDetails);
         tweetImageDetails = (ImageView) findViewById(R.id.tweetImageDetails);
         relativeTimestampDetails = (TextView) findViewById(R.id.relativeTimestampDetails);
+        final Button likeButton = (Button) findViewById(R.id.likeButton);
+        tvLikeCount = (TextView) findViewById(R.id.tvLikeCount);
 
 
         // it does not go to the details page when I click on the body of the tweet?!?
@@ -47,9 +56,21 @@ public class TweetsDetailsActivity extends AppCompatActivity {
         relativeTimestampDetails.setText(tweet.getCreatedAt());
         Glide.with(this).load(tweet.getTweetImage()).into(tweetImageDetails);
         Glide.with(this).load(tweet.getUser().getProfileImageUrl()).into(ivProfileImageDetails);
+        likes = tweet.getNumberOfLikes();
+        tvLikeCount.setText(""+likes);
 
+        likeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                tvLikeCount.setText(""+(tweet.getNumberOfLikes() + 1));
+                if(isPlay){
+                    v.setBackgroundResource(R.drawable.heartoutlinered);
+                    tvLikeCount.setText(""+likes);
+                }else{
+                    v.setBackgroundResource(R.drawable.heartfilledred);
+                }
 
-
-
+                isPlay = !isPlay; // reverse
+            }
+        });
     }
 }
