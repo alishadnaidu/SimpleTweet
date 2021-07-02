@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ public class TweetsDetailsActivity extends AppCompatActivity {
     ImageView tweetImageDetails;
     TextView relativeTimestampDetails;
     TextView tvLikeCount;
+    EditText etRetweet;
+    TextView tvComments;
 
     public Integer likes;
     boolean isPlay = false;
@@ -45,9 +48,13 @@ public class TweetsDetailsActivity extends AppCompatActivity {
         ivProfileImageDetails = (ImageView) findViewById(R.id.ivProfileImageDetails);
         tweetImageDetails = (ImageView) findViewById(R.id.tweetImageDetails);
         relativeTimestampDetails = (TextView) findViewById(R.id.relativeTimestampDetails);
+        tvLikeCount = (TextView) findViewById(R.id.tvLikeCount);
+        etRetweet = (EditText) findViewById(R.id.etRetweet);
+        tvComments = (TextView) findViewById(R.id.tvComments);
         final Button likeButton = (Button) findViewById(R.id.likeButton);
         final Button shareButton = (Button) findViewById(R.id.shareButton);
-        tvLikeCount = (TextView) findViewById(R.id.tvLikeCount);
+        final Button retweetButton = (Button) findViewById(R.id.retweetButton);
+        final Button replyButton = (Button) findViewById(R.id.replyButton);
 
         // set all the views to be the corresponding tweet or user content/media
         tvScreenNameDetails.setText(tweet.getUser().getName());
@@ -87,6 +94,34 @@ public class TweetsDetailsActivity extends AppCompatActivity {
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
+            }
+        });
+
+        // when retweet button is clicked, make the views for replying to comment visible
+        retweetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //make etRetweet and replyButton visible
+                etRetweet.setVisibility(view.VISIBLE);
+                replyButton.setVisibility(view.VISIBLE);
+                //make text in etRetweet to be @username
+                etRetweet.setHint("Compose your reply here...");
+                etRetweet.setText("@" + tweet.getUser().getScreenName());
+            }
+        });
+
+        // when the comment reply button is clicked, make the comment views invisible and
+        // publish the comment on the same page
+        replyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //make etRetweet and replyButton invisible
+                etRetweet.setVisibility(view.INVISIBLE);
+                replyButton.setVisibility(view.INVISIBLE);
+                String replyContent = etRetweet.getText().toString();
+                //set tvComments text to be tweetContent below
+                tvComments.setText(replyContent);
+                tvComments.setVisibility(view.VISIBLE);
             }
         });
     }
